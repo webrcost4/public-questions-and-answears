@@ -12,7 +12,7 @@ export default function Home() {
 
     async function fetchData() {
         try {
-            const allMatters = await axios.get('/api/get/list-all');
+            const allMatters = await axios.get('/api/get/listAll');
             setMatters(allMatters.data);
         } catch (error) {
             console.log('error');
