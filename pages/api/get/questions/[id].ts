@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import examSchema from '../../../db/schemas/exam.schema';
+import examSchema from '../../../../db/schemas/exam.schema';
 
 export default async function listAllDisciplines(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import examSchema from '../../db/schemas/exam.schema';
+import examSchema from '../../../db/schemas/exam.schema';
 import { IAnswers, IExam } from '../../../types';
 
 interface IElement {
