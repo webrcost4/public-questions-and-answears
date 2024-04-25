@@ -10,6 +10,12 @@ interface IResult {
 	isApproved: boolean;
 }
 
+interface FormField {
+  name: string;
+  checked: boolean;
+  value: string;
+}
+
 export default function Home({ params }: { params: { id: string } }) {
 
     const [questions, setQuestions] = useState<IExam>();
@@ -29,19 +35,22 @@ export default function Home({ params }: { params: { id: string } }) {
     }, []);
 
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
+        
         event.preventDefault();
-        let formData : Array<object> = [];
-        for (const field of event.target.elements) {
-            
-            if (field.name && field.checked === true) {
-                formData = [...formData, {
+        const formData: { questionId: string; selectedAlternative: string }[] = [];
+        const formElements = (event.currentTarget as HTMLFormElement).elements as unknown as FormField[];
+        for (const field of formElements) {
+            if (field.name && field.checked) {
+                formData.push({
                     questionId: field.name,
                     selectedAlternative: field.value
-                }];
+                });
             }
         }
+        console.log('Valores submetidos:', formData);
+
 
         try {
             const response = await axios.post('/api/post/grading-exams', { 
@@ -60,12 +69,19 @@ export default function Home({ params }: { params: { id: string } }) {
             {result ? (
                 <>
                     {result.isApproved === true ? (
-                        <h1>Párabens voce foi aprovado</h1>
+                        <div className='text-center pt-5 mt-5'>
+                            <h1>Párabens você foi aprovado</h1>
+                            <button 
+                                onClick={()=>window.location.href = '/'}
+                                className='btn btn-dark'>Fazer outra</button>
+                        </div>
                     ) : (
-                        <>
-                            <h1>Infelizmente voce nao foi aprovado</h1>
-                            <button onClick={()=>window.location.reload()}>Refazer prova</button>
-                        </>
+                        <div className='text-center pt-5 mt-5'>
+                            <h1>Infelizmente você não foi aprovado</h1>
+                            <button 
+                                onClick={()=>window.location.reload()}
+                                className='btn btn-dark'>Refazer prova</button>
+                        </div>
                     )}
                 </>) : (
                 <>

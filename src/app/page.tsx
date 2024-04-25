@@ -34,7 +34,7 @@ export default function Home() {
                             <button 
                                 type='button' 
                                 className='btn btn-dark'>
-                          Fazer prova
+                                Fazer prova
                             </button>
                         </a>
                     </div>
