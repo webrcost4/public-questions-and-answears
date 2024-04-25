@@ -8,7 +8,7 @@ O projeto consiste em uma prova online onde os usuários podem responder a pergu
 
 ## Link para o Projeto
 
-O projeto está hospedado em [https://meu-projeto-prova-online.com](https://meu-projeto-prova-online.com).
+O projeto está hospedado em [https://answears.vercel.app/](https://answears.vercel.app/).
 
 ## Habilidades Adquiridas
 
