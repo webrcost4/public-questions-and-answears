@@ -13,13 +13,13 @@ export interface IExam {
 }
 
 export interface IAnswers {
-    examId?: string;
-    matter?: string;
-    level?: string;
-    answers?: [
+    examId: string;
+    matter: string;
+    level: string;
+    answers: [
         {
-            questionId: string | undefined;
-            selectedAlternative: string | undefined;
+            questionId: string;
+            selectedAlternative: string;
         }
     ];
 }
