@@ -53,7 +53,7 @@ export default function Home({ params }: { params: { id: string } }) {
 
 
         try {
-            const response = await axios.post('/api/post/grading-exams', { 
+            const response = await axios.post('/api/post/gradingExams', { 
                 answers: formData, 
                 examId: questions?._id 
             });
