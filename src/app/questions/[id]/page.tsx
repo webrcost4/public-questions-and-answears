@@ -8,6 +8,7 @@ interface IResult {
 	hits: number;
 	errors: number;
 	isApproved: boolean;
+    totalGrade: number;
 }
 
 interface FormField {
@@ -71,6 +72,7 @@ export default function Home({ params }: { params: { id: string } }) {
                     {result.isApproved === true ? (
                         <div className='text-center pt-5 mt-5'>
                             <h1>Párabens você foi aprovado</h1>
+                            <h3>Sua nota foi: {result.totalGrade}</h3>
                             <button 
                                 onClick={()=>window.location.href = '/'}
                                 className='btn btn-dark'>Fazer outra</button>
@@ -78,6 +80,7 @@ export default function Home({ params }: { params: { id: string } }) {
                     ) : (
                         <div className='text-center pt-5 mt-5'>
                             <h1>Infelizmente você não foi aprovado</h1>
+                            <h3>Sua nota foi: {result.totalGrade}</h3>
                             <button 
                                 onClick={()=>window.location.reload()}
                                 className='btn btn-dark'>Refazer prova</button>

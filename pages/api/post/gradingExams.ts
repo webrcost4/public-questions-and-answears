@@ -38,9 +38,9 @@ export default async function gradingExams(req: NextApiRequest, res: NextApiResp
              **  Calculando a media, verificando se o usuario tem um certificado se nao tive add ele no banco de dados.
              */
             if (totalGrade >= 60) {
-                return res.json({ hits, errors, isApproved: true });
+                return res.json({ hits, errors, isApproved: true, totalGrade });
             } else {
-                return res.json({ hits, errors, isApproved: false });
+                return res.json({ hits, errors, isApproved: false, totalGrade });
             }
         } catch (error) {
             res.status(400).json(error);
