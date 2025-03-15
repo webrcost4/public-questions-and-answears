@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { IExam } from '../../types';
-
+import { MdArrowForward } from 'react-icons/md';
+import { levelProof } from '@/functions/index.func';
 
 export default function Home() {
-
     const [matters, setMatters] = useState<Array<IExam>>();
-    const levelsProof = ['Facil', 'Médio', 'Díficil'];
 
     async function fetchData() {
         try {
@@ -19,27 +18,23 @@ export default function Home() {
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchData();
     }, []);
 
     return (
         <>
-            <div className="form-row col-md-10 mx-auto text-center mt-5 pt-5">
-                {matters?.map((element, key)=> (
-                    <div key={key} className="col-md-2 card p-4 m-1">
-                        <h3 className='text-3xl font-bold'>{element.matter}</h3>
-                        <p>Nivel da prova: <b>{levelsProof[element.level]}</b></p>
-                        <a href={`/questions/${element._id}`}>
-                            <button 
-                                type='button' 
-                                className='btn btn-dark'>
-                                Fazer prova
-                            </button>
-                        </a>
-                    </div>
-                ))}
-            </div>
+            {matters?.map(({ _id, level, matter }, key) => (
+                <div key={key} className="col-md-3 mx-auto card-item my-3">
+                    <h5 className="font-weight-bold">{matter}</h5>
+                    <p className="font-weight-bold">{levelProof(level)}</p>
+                    <a href={`/questions/${_id}`}>
+                        <button type="button" className="button">
+                            Fazer prova <MdArrowForward />
+                        </button>
+                    </a>
+                </div>
+            ))}
         </>
     );
 }

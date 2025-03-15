@@ -1,7 +1,44 @@
-.card {
-  border-radius: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+body {
+  font-family: "Inter Tight", sans-serif!important;
+  /* background-color: black!important; */
+  color: #1C1C1C!important;
 }
 
-.border {
-  border-radius: 15px;
+hr {
+  background-color: #1C1C1C;
+}
+
+.button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 0px;
+  border-radius: 10px!important;
+}
+
+.button-2 {
+  background-color: #1C1C1C;
+  color: white;
+  border: none;
+  padding: 15px 50px 15px 50px;
+  border-radius: 10px!important;
+  font-weight: bold;
+}
+
+.card-item {
+  border-bottom: 1px solid #1c1c1c;
+  padding: 10px;
+  text-align: center;
+}
+
+.borders {
+  border: 1px solid #1c1c1c!important;
+}
+
+.border-radius-dft {
+  border-radius: 20px;
 }
