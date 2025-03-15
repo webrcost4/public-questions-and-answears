@@ -22,6 +22,7 @@ interface FormField {
 export default function Home({ params }: { params: { id: string } }) {
     const [questions, setQuestions] = useState<IExam>();
     const [result, setResult] = useState<IResult>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     async function fetchData() {
         try {
@@ -29,6 +30,8 @@ export default function Home({ params }: { params: { id: string } }) {
             setQuestions(allQuestions.data[0]);
         } catch (error) {
             console.log('error');
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -63,14 +66,14 @@ export default function Home({ params }: { params: { id: string } }) {
     };
 
     return (
-        <main>
+        <main className="text-center">
             {result ? (
                 <>
                     {result.isApproved === true ? (
                         <div className="text-center pt-5 mt-5">
                             <h1>Párabens você foi aprovado</h1>
                             <h3>Sua nota foi: {result.totalGrade}%</h3>
-                            <button onClick={() => (window.location.href = '/')} className="btn btn-dark">
+                            <button onClick={() => (window.location.href = '/')} className="button-2">
                                 Fazer outra
                             </button>
                         </div>
@@ -86,7 +89,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 </>
             ) : (
                 <>
-                    {questions !== undefined ? (
+                    {isLoading === false ? (
                         <section className="col-md-8 text-left mx-auto mb-5">
                             <a href="/">
                                 <MdArrowBack size={25} className="my-3" color="#1c1c1c" />
@@ -94,7 +97,7 @@ export default function Home({ params }: { params: { id: string } }) {
 
                             <div>
                                 <h1 className="py-1">{questions?.matter}</h1>
-                                <h5 className="pb-5">{levelProof(questions.level)}</h5>
+                                <h5 className="pb-5">{levelProof(questions?.level)}</h5>
                             </div>
 
                             <form method="post" onSubmit={handleSubmit}>
@@ -124,7 +127,9 @@ export default function Home({ params }: { params: { id: string } }) {
                             </form>
                         </section>
                     ) : (
-                        <h1>Error</h1>
+                        <div className="spinner-border" style={{ marginTop: '15%' }} role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
                     )}
                 </>
             )}

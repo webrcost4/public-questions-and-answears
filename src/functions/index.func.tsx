@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlineStarHalf, MdOutlineStarOutline, MdOutlineStarPurple500 } from 'react-icons/md';
 
-export function levelProof(level: number) {
+export function levelProof(level: number | undefined) {
     if (level == 0)
         return (
             <>
