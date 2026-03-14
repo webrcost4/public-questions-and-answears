@@ -4,7 +4,7 @@ import examSchema from '../../../db/schemas/exam.schema';
 export default async function listAllMatter(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
-            const matter = await examSchema.find({}).select({ questions: false });
+            const matter = await examSchema.find().select({ questions: false });
 
             res.json(matter);
         } catch (error) {
